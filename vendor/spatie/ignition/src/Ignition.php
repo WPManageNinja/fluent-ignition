@@ -311,6 +311,14 @@ class Ignition
             $this->customHtmlBody,
         );
 
+        if(!headers_sent()) {
+            $code = $throwable->getCode();
+            if(!$code || $code < 400 || $code > 599) {
+                $code = 500;
+            }
+            header('Content-Type: text/html; charset=UTF-8', true, $code);
+        }
+
         (new Renderer())->render(['viewModel' => $viewModel], self::viewPath('errorPage'));
     }
 
