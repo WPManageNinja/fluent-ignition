@@ -1,6 +1,6 @@
 # Beautiful WordPress Error Page (PHP) for Devs
 
-![Banner](https://wpmanageninja.com/wp-content/uploads/2023/08/banner.png)
+![Banner](https://wpmanageninja.com/wp-content/uploads/2023/08/ignite-banner.png)
 
 ### Requirements
 
