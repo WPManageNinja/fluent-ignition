@@ -259,7 +259,7 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
     /**
      * Execute a callback over each item.
      *
-     * @param  callable(TValue, TKey): mixed  $callback
+     * @param  callable(TValue, TKey)  $callback
      * @return $this
      */
     public function each(callable $callback);
@@ -985,7 +985,7 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
     /**
      * Sort the collection using the given callback.
      *
-     * @param  array<array-key, (callable(TValue, TValue): mixed)|(callable(TValue, TKey): mixed)|string|array{string, string}>|(callable(TValue, TKey): mixed)|string  $callback
+     * @param  array<array-key, (callable(TValue, TValue))|(callable(TValue, TKey))|string|array{string, string}>|(callable(TValue, TKey))|string  $callback
      * @param  int  $options
      * @param  bool  $descending
      * @return static
@@ -995,7 +995,7 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
     /**
      * Sort the collection in descending order using the given callback.
      *
-     * @param  array<array-key, (callable(TValue, TValue): mixed)|(callable(TValue, TKey): mixed)|string|array{string, string}>|(callable(TValue, TKey): mixed)|string  $callback
+     * @param  array<array-key, (callable(TValue, TValue))|(callable(TValue, TKey))|string|array{string, string}>|(callable(TValue, TKey))|string  $callback
      * @param  int  $options
      * @return static
      */
@@ -1029,7 +1029,7 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
     /**
      * Get the sum of the given values.
      *
-     * @param  (callable(TValue): mixed)|string|null  $callback
+     * @param  (callable(TValue))|string|null  $callback
      * @return mixed
      */
     public function sum($callback = null);
@@ -1061,7 +1061,7 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
     /**
      * Pass the collection to the given callback and then return it.
      *
-     * @param  callable(TValue): mixed  $callback
+     * @param  callable(TValue)  $callback
      * @return $this
      */
     public function tap(callable $callback);
@@ -1121,7 +1121,7 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
     /**
      * Return only unique items from the collection array.
      *
-     * @param  (callable(TValue, TKey): mixed)|string|null  $key
+     * @param  (callable(TValue, TKey))|string|null  $key
      * @param  bool  $strict
      * @return static
      */
@@ -1130,7 +1130,7 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
     /**
      * Return only unique items from the collection array using strict comparison.
      *
-     * @param  (callable(TValue, TKey): mixed)|string|null  $key
+     * @param  (callable(TValue, TKey))|string|null  $key
      * @return static
      */
     public function uniqueStrict($key = null);
@@ -1207,7 +1207,7 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
      *
      * @return mixed
      */
-    public function jsonSerialize(): mixed;
+    public function jsonSerialize();
 
     /**
      * Get the collection of items as JSON.

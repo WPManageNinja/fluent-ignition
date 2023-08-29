@@ -118,7 +118,7 @@ class MetadataBag implements SessionBagInterface
         return $this->lastUsed;
     }
 
-    public function clear(): mixed
+    public function clear()
     {
         // nothing to do
         return null;

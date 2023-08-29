@@ -63,7 +63,7 @@ class BinaryFileResponse extends Response
      *
      * @throws FileException
      */
-    public function setFile(\SplFileInfo|string $file, string $contentDisposition = null, bool $autoEtag = false, bool $autoLastModified = true): static
+    public function setFile(\SplFileInfo|string $file, string $contentDisposition = null, bool $autoEtag = false, bool $autoLastModified = true)
     {
         if (!$file instanceof File) {
             if ($file instanceof \SplFileInfo) {
@@ -107,7 +107,7 @@ class BinaryFileResponse extends Response
      *
      * @return $this
      */
-    public function setChunkSize(int $chunkSize): static
+    public function setChunkSize(int $chunkSize)
     {
         if ($chunkSize < 1 || $chunkSize > \PHP_INT_MAX) {
             throw new \LogicException('The chunk size of a BinaryFileResponse cannot be less than 1 or greater than PHP_INT_MAX.');
@@ -123,7 +123,7 @@ class BinaryFileResponse extends Response
      *
      * @return $this
      */
-    public function setAutoLastModified(): static
+    public function setAutoLastModified()
     {
         $this->setLastModified(\DateTime::createFromFormat('U', $this->file->getMTime()));
 
@@ -135,7 +135,7 @@ class BinaryFileResponse extends Response
      *
      * @return $this
      */
-    public function setAutoEtag(): static
+    public function setAutoEtag()
     {
         $this->setEtag(base64_encode(hash_file('sha256', $this->file->getPathname(), true)));
 
@@ -151,7 +151,7 @@ class BinaryFileResponse extends Response
      *
      * @return $this
      */
-    public function setContentDisposition(string $disposition, string $filename = '', string $filenameFallback = ''): static
+    public function setContentDisposition(string $disposition, string $filename = '', string $filenameFallback = '')
     {
         if ('' === $filename) {
             $filename = $this->file->getFilename();
@@ -177,7 +177,7 @@ class BinaryFileResponse extends Response
         return $this;
     }
 
-    public function prepare(Request $request): static
+    public function prepare(Request $request)
     {
         if ($this->isInformational() || $this->isEmpty()) {
             parent::prepare($request);
@@ -289,7 +289,7 @@ class BinaryFileResponse extends Response
         return $lastModified->format('D, d M Y H:i:s').' GMT' === $header;
     }
 
-    public function sendContent(): static
+    public function sendContent()
     {
         try {
             if (!$this->isSuccessful()) {
@@ -342,7 +342,7 @@ class BinaryFileResponse extends Response
     /**
      * @throws \LogicException when the content is not null
      */
-    public function setContent(?string $content): static
+    public function setContent(?string $content)
     {
         if (null !== $content) {
             throw new \LogicException('The content cannot be set on a BinaryFileResponse instance.');
@@ -372,7 +372,7 @@ class BinaryFileResponse extends Response
      *
      * @return $this
      */
-    public function deleteFileAfterSend(bool $shouldDelete = true): static
+    public function deleteFileAfterSend(bool $shouldDelete = true)
     {
         $this->deleteFileAfterSend = $shouldDelete;
 

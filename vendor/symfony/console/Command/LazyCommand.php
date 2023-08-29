@@ -81,7 +81,7 @@ final class LazyCommand extends Command
         $this->getCommand()->complete($input, $suggestions);
     }
 
-    public function setCode(callable $code): static
+    public function setCode(callable $code)
     {
         $this->getCommand()->setCode($code);
 
@@ -96,7 +96,7 @@ final class LazyCommand extends Command
         $this->getCommand()->mergeApplicationDefinition($mergeArgs);
     }
 
-    public function setDefinition(array|InputDefinition $definition): static
+    public function setDefinition(array|InputDefinition $definition)
     {
         $this->getCommand()->setDefinition($definition);
 
@@ -116,7 +116,7 @@ final class LazyCommand extends Command
     /**
      * @param array|\Closure(CompletionInput,CompletionSuggestions):list<string|Suggestion> $suggestedValues The values used for input completion
      */
-    public function addArgument(string $name, int $mode = null, string $description = '', mixed $default = null /* array|\Closure $suggestedValues = [] */): static
+    public function addArgument(string $name, int $mode = null, string $description = '', mixed $default = null /* array|\Closure $suggestedValues = [] */)
     {
         $suggestedValues = 5 <= \func_num_args() ? func_get_arg(4) : [];
         $this->getCommand()->addArgument($name, $mode, $description, $default, $suggestedValues);
@@ -127,7 +127,7 @@ final class LazyCommand extends Command
     /**
      * @param array|\Closure(CompletionInput,CompletionSuggestions):list<string|Suggestion> $suggestedValues The values used for input completion
      */
-    public function addOption(string $name, string|array $shortcut = null, int $mode = null, string $description = '', mixed $default = null /* array|\Closure $suggestedValues = [] */): static
+    public function addOption(string $name, string|array $shortcut = null, int $mode = null, string $description = '', mixed $default = null /* array|\Closure $suggestedValues = [] */)
     {
         $suggestedValues = 6 <= \func_num_args() ? func_get_arg(5) : [];
         $this->getCommand()->addOption($name, $shortcut, $mode, $description, $default, $suggestedValues);
@@ -135,14 +135,14 @@ final class LazyCommand extends Command
         return $this;
     }
 
-    public function setProcessTitle(string $title): static
+    public function setProcessTitle(string $title)
     {
         $this->getCommand()->setProcessTitle($title);
 
         return $this;
     }
 
-    public function setHelp(string $help): static
+    public function setHelp(string $help)
     {
         $this->getCommand()->setHelp($help);
 
@@ -164,7 +164,7 @@ final class LazyCommand extends Command
         return $this->getCommand()->getSynopsis($short);
     }
 
-    public function addUsage(string $usage): static
+    public function addUsage(string $usage)
     {
         $this->getCommand()->addUsage($usage);
 

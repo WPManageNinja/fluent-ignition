@@ -11,7 +11,7 @@ class BaseSolution implements Solution
     /** @var array<string, string> */
     protected array $links = [];
 
-    public static function create(string $title = ''): static
+    public static function create(string $title = '')
     {
         // It's important to keep the return type as static because
         // the old Facade Ignition contracts extend from this method.

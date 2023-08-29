@@ -49,7 +49,7 @@ class StreamedResponse extends Response
      *
      * @return $this
      */
-    public function setCallback(callable $callback): static
+    public function setCallback(callable $callback)
     {
         $this->callback = $callback;
 
@@ -63,7 +63,7 @@ class StreamedResponse extends Response
      *
      * @return $this
      */
-    public function sendHeaders(/* int $statusCode = null */): static
+    public function sendHeaders(/* int $statusCode = null */)
     {
         if ($this->headersSent) {
             return $this;
@@ -82,7 +82,7 @@ class StreamedResponse extends Response
      *
      * @return $this
      */
-    public function sendContent(): static
+    public function sendContent()
     {
         if ($this->streamed) {
             return $this;
@@ -104,7 +104,7 @@ class StreamedResponse extends Response
      *
      * @throws \LogicException when the content is not null
      */
-    public function setContent(?string $content): static
+    public function setContent(?string $content)
     {
         if (null !== $content) {
             throw new \LogicException('The content cannot be set on a StreamedResponse instance.');

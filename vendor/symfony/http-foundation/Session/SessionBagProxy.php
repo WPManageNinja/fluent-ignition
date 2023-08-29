@@ -76,7 +76,7 @@ final class SessionBagProxy implements SessionBagInterface
         return $this->bag->getStorageKey();
     }
 
-    public function clear(): mixed
+    public function clear()
     {
         return $this->bag->clear();
     }

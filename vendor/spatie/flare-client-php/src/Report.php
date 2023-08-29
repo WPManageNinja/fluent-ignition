@@ -67,12 +67,12 @@ class Report
 
     /** @param array<class-string<ArgumentReducer>|ArgumentReducer>|ArgumentReducers|null $argumentReducers */
     public static function createForThrowable(
-        Throwable $throwable,
-        ContextProvider $context,
-        ?string $applicationPath = null,
-        ?string $version = null,
-        null|array|ArgumentReducers $argumentReducers = null,
-        bool $withStackTraceArguments = true,
+         $throwable,
+         $context,
+         $applicationPath = null,
+         $version = null,
+         $argumentReducers = null,
+         $withStackTraceArguments = true
     ): self {
         $stacktrace = Backtrace::createForThrowable($throwable)
             ->withArguments($withStackTraceArguments)
@@ -92,8 +92,9 @@ class Report
 
     protected static function getClassForThrowable(Throwable $throwable): string
     {
+
         /** @phpstan-ignore-next-line */
-        if ($throwable::class === ViewException::class) {
+        if (get_class($throwable) === ViewException::class) {
             /** @phpstan-ignore-next-line */
             if ($previous = $throwable->getPrevious()) {
                 return get_class($previous);
@@ -109,8 +110,8 @@ class Report
         string $logLevel,
         ContextProvider $context,
         ?string $applicationPath = null,
-        null|array|ArgumentReducers $argumentReducers = null,
-        bool $withStackTraceArguments = true,
+        ArgumentReducers $argumentReducers = null,
+        bool $withStackTraceArguments = true
     ): self {
         $stacktrace = Backtrace::create()
             ->withArguments($withStackTraceArguments)

@@ -89,7 +89,7 @@ class TextPart extends AbstractPart
      *
      * @return $this
      */
-    public function setDisposition(string $disposition): static
+    public function setDisposition(string $disposition)
     {
         $this->disposition = $disposition;
 
@@ -109,7 +109,7 @@ class TextPart extends AbstractPart
      *
      * @return $this
      */
-    public function setName(string $name): static
+    public function setName(string $name)
     {
         $this->name = $name;
 

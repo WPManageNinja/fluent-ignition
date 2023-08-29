@@ -61,7 +61,7 @@ class JsonResponse extends Response
      * @param int    $status  The response status code (200 "OK" by default)
      * @param array  $headers An array of response headers
      */
-    public static function fromJsonString(string $data, int $status = 200, array $headers = []): static
+    public static function fromJsonString(string $data, int $status = 200, array $headers = [])
     {
         return new static($data, $status, $headers, true);
     }
@@ -75,7 +75,7 @@ class JsonResponse extends Response
      *
      * @throws \InvalidArgumentException When the callback name is not valid
      */
-    public function setCallback(string $callback = null): static
+    public function setCallback(string $callback = null)
     {
         if (1 > \func_num_args()) {
             trigger_deprecation('symfony/http-foundation', '6.2', 'Calling "%s()" without any arguments is deprecated, pass null explicitly instead.', __METHOD__);
@@ -109,7 +109,7 @@ class JsonResponse extends Response
      *
      * @return $this
      */
-    public function setJson(string $json): static
+    public function setJson(string $json)
     {
         $this->data = $json;
 
@@ -123,7 +123,7 @@ class JsonResponse extends Response
      *
      * @throws \InvalidArgumentException
      */
-    public function setData(mixed $data = []): static
+    public function setData(mixed $data = [])
     {
         try {
             $data = json_encode($data, $this->encodingOptions);
@@ -158,7 +158,7 @@ class JsonResponse extends Response
      *
      * @return $this
      */
-    public function setEncodingOptions(int $encodingOptions): static
+    public function setEncodingOptions(int $encodingOptions)
     {
         $this->encodingOptions = $encodingOptions;
 
@@ -170,7 +170,7 @@ class JsonResponse extends Response
      *
      * @return $this
      */
-    protected function update(): static
+    protected function update()
     {
         if (null !== $this->callback) {
             // Not using application/javascript for compatibility reasons with older browsers.

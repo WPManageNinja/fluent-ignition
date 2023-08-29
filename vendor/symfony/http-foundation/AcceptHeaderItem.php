@@ -62,7 +62,7 @@ class AcceptHeaderItem
      *
      * @return $this
      */
-    public function setValue(string $value): static
+    public function setValue(string $value)
     {
         $this->value = $value;
 
@@ -82,7 +82,7 @@ class AcceptHeaderItem
      *
      * @return $this
      */
-    public function setQuality(float $quality): static
+    public function setQuality(float $quality)
     {
         $this->quality = $quality;
 
@@ -102,7 +102,7 @@ class AcceptHeaderItem
      *
      * @return $this
      */
-    public function setIndex(int $index): static
+    public function setIndex(int $index)
     {
         $this->index = $index;
 
@@ -128,7 +128,7 @@ class AcceptHeaderItem
     /**
      * Returns an attribute by its name.
      */
-    public function getAttribute(string $name, mixed $default = null): mixed
+    public function getAttribute(string $name, mixed $default = null)
     {
         return $this->attributes[$name] ?? $default;
     }
@@ -146,7 +146,7 @@ class AcceptHeaderItem
      *
      * @return $this
      */
-    public function setAttribute(string $name, string $value): static
+    public function setAttribute(string $name, string $value)
     {
         if ('q' === $name) {
             $this->quality = (float) $value;

@@ -142,7 +142,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
         return $this->__isset($key);
     }
 
-    public function offsetGet(mixed $key): mixed
+    public function offsetGet(mixed $key)
     {
         return $this->__get($key);
     }
@@ -171,7 +171,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Returns a depth limited clone of $this.
      */
-    public function withMaxDepth(int $maxDepth): static
+    public function withMaxDepth(int $maxDepth)
     {
         $data = clone $this;
         $data->maxDepth = $maxDepth;
@@ -182,7 +182,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Limits the number of elements per depth level.
      */
-    public function withMaxItemsPerDepth(int $maxItemsPerDepth): static
+    public function withMaxItemsPerDepth(int $maxItemsPerDepth)
     {
         $data = clone $this;
         $data->maxItemsPerDepth = $maxItemsPerDepth;
@@ -195,7 +195,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
      *
      * @param bool $useRefHandles False to hide global ref. handles
      */
-    public function withRefHandles(bool $useRefHandles): static
+    public function withRefHandles(bool $useRefHandles)
     {
         $data = clone $this;
         $data->useRefHandles = $useRefHandles ? -1 : 0;
@@ -203,7 +203,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
         return $data;
     }
 
-    public function withContext(array $context): static
+    public function withContext(array $context)
     {
         $data = clone $this;
         $data->context = $context;
@@ -411,7 +411,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
         return $hashCut;
     }
 
-    private function getStub(mixed $item): mixed
+    private function getStub(mixed $item)
     {
         if (!$item || !\is_array($item)) {
             return $item;

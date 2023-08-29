@@ -27,7 +27,7 @@ interface CatalogueMetadataAwareInterface
      *
      * @return mixed The value that was set or an array with the domains/keys or null
      */
-    public function getCatalogueMetadata(string $key = '', string $domain = 'messages'): mixed;
+    public function getCatalogueMetadata(string $key = '', string $domain = 'messages');
 
     /**
      * Adds catalogue metadata to a message domain.

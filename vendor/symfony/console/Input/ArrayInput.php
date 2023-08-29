@@ -68,7 +68,7 @@ class ArrayInput extends Input
         return false;
     }
 
-    public function getParameterOption(string|array $values, string|bool|int|float|array|null $default = false, bool $onlyParams = false): mixed
+    public function getParameterOption(string|array $values, string|bool|int|float|array|null $default = false, bool $onlyParams = false)
     {
         $values = (array) $values;
 

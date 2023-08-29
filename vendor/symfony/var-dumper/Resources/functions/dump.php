@@ -17,7 +17,7 @@ if (!function_exists('dump')) {
      * @author Nicolas Grekas <p@tchwork.com>
      * @author Alexandre Daubois <alex.daubois@gmail.com>
      */
-    function dump(mixed ...$vars): mixed
+    function dump(mixed ...$vars)
     {
         if (!$vars) {
             VarDumper::dump(new ScalarStub('🐛'));

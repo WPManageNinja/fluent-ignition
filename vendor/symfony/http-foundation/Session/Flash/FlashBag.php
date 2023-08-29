@@ -121,7 +121,7 @@ class FlashBag implements FlashBagInterface
         return $this->storageKey;
     }
 
-    public function clear(): mixed
+    public function clear()
     {
         return $this->all();
     }

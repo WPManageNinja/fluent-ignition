@@ -53,7 +53,7 @@ class TableStyle
      *
      * @return $this
      */
-    public function setPaddingChar(string $paddingChar): static
+    public function setPaddingChar(string $paddingChar)
     {
         if (!$paddingChar) {
             throw new LogicException('The padding char must not be empty.');
@@ -88,7 +88,7 @@ class TableStyle
      *
      * @return $this
      */
-    public function setHorizontalBorderChars(string $outside, string $inside = null): static
+    public function setHorizontalBorderChars(string $outside, string $inside = null)
     {
         $this->horizontalOutsideBorderChar = $outside;
         $this->horizontalInsideBorderChar = $inside ?? $outside;
@@ -113,7 +113,7 @@ class TableStyle
      *
      * @return $this
      */
-    public function setVerticalBorderChars(string $outside, string $inside = null): static
+    public function setVerticalBorderChars(string $outside, string $inside = null)
     {
         $this->verticalOutsideBorderChar = $outside;
         $this->verticalInsideBorderChar = $inside ?? $outside;
@@ -167,7 +167,7 @@ class TableStyle
      *
      * @return $this
      */
-    public function setCrossingChars(string $cross, string $topLeft, string $topMid, string $topRight, string $midRight, string $bottomRight, string $bottomMid, string $bottomLeft, string $midLeft, string $topLeftBottom = null, string $topMidBottom = null, string $topRightBottom = null): static
+    public function setCrossingChars(string $cross, string $topLeft, string $topMid, string $topRight, string $midRight, string $bottomRight, string $bottomMid, string $bottomLeft, string $midLeft, string $topLeftBottom = null, string $topMidBottom = null, string $topRightBottom = null)
     {
         $this->crossingChar = $cross;
         $this->crossingTopLeftChar = $topLeft;
@@ -231,7 +231,7 @@ class TableStyle
      *
      * @return $this
      */
-    public function setCellHeaderFormat(string $cellHeaderFormat): static
+    public function setCellHeaderFormat(string $cellHeaderFormat)
     {
         $this->cellHeaderFormat = $cellHeaderFormat;
 
@@ -251,7 +251,7 @@ class TableStyle
      *
      * @return $this
      */
-    public function setCellRowFormat(string $cellRowFormat): static
+    public function setCellRowFormat(string $cellRowFormat)
     {
         $this->cellRowFormat = $cellRowFormat;
 
@@ -271,7 +271,7 @@ class TableStyle
      *
      * @return $this
      */
-    public function setCellRowContentFormat(string $cellRowContentFormat): static
+    public function setCellRowContentFormat(string $cellRowContentFormat)
     {
         $this->cellRowContentFormat = $cellRowContentFormat;
 
@@ -291,7 +291,7 @@ class TableStyle
      *
      * @return $this
      */
-    public function setBorderFormat(string $borderFormat): static
+    public function setBorderFormat(string $borderFormat)
     {
         $this->borderFormat = $borderFormat;
 
@@ -311,7 +311,7 @@ class TableStyle
      *
      * @return $this
      */
-    public function setPadType(int $padType): static
+    public function setPadType(int $padType)
     {
         if (!\in_array($padType, [\STR_PAD_LEFT, \STR_PAD_RIGHT, \STR_PAD_BOTH], true)) {
             throw new InvalidArgumentException('Invalid padding type. Expected one of (STR_PAD_LEFT, STR_PAD_RIGHT, STR_PAD_BOTH).');
@@ -338,7 +338,7 @@ class TableStyle
     /**
      * @return $this
      */
-    public function setHeaderTitleFormat(string $format): static
+    public function setHeaderTitleFormat(string $format)
     {
         $this->headerTitleFormat = $format;
 
@@ -353,7 +353,7 @@ class TableStyle
     /**
      * @return $this
      */
-    public function setFooterTitleFormat(string $format): static
+    public function setFooterTitleFormat(string $format)
     {
         $this->footerTitleFormat = $format;
 

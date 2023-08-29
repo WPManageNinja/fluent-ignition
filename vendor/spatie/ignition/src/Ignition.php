@@ -46,7 +46,7 @@ class Ignition
 
     protected ?string $solutionTransformerClass = null;
 
-    /** @var ArrayObject<int, callable(Throwable): mixed> */
+    /** @var ArrayObject<int, callable(Throwable)> */
     protected ArrayObject $documentationLinkResolvers;
 
     protected string $customHtmlHead = '';
@@ -81,7 +81,7 @@ class Ignition
         return $this;
     }
 
-    /** @param callable(Throwable): mixed $callable */
+    /** @param callable(Throwable) $callable */
     public function resolveDocumentationLink(callable $callable): self
     {
         $this->documentationLinkResolvers[] = $callable;
@@ -210,7 +210,7 @@ class Ignition
      *
      * @return $this
      */
-    public function registerMiddleware(array|FlareMiddleware $middleware): self
+    public function registerMiddleware( $middleware): self
     {
         if (! is_array($middleware)) {
             $middleware = [$middleware];
@@ -278,6 +278,8 @@ class Ignition
     {
         $this->setUpFlare();
 
+              
+
         $report = $this->createReport($throwable);
 
         if ($this->shouldDisplayException && $this->inProductionEnvironment !== true) {
@@ -285,7 +287,7 @@ class Ignition
         }
 
         if ($this->flare->apiTokenSet() && $this->inProductionEnvironment !== false) {
-            $this->flare->report($throwable, report: $report);
+            $this->flare->report($throwable, null, $report);
         }
 
         return $report;

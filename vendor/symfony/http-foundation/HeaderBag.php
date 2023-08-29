@@ -133,7 +133,7 @@ class HeaderBag implements \IteratorAggregate, \Countable
      *
      * @return void
      */
-    public function set(string $key, string|array|null $values, bool $replace = true)
+    public function set(string $key, $values, bool $replace = true)
     {
         $key = strtr($key, self::UPPER, self::LOWER);
 
@@ -213,7 +213,7 @@ class HeaderBag implements \IteratorAggregate, \Countable
      *
      * @return void
      */
-    public function addCacheControlDirective(string $key, bool|string $value = true)
+    public function addCacheControlDirective(string $key, $value = true)
     {
         $this->cacheControl[$key] = $value;
 
@@ -231,7 +231,7 @@ class HeaderBag implements \IteratorAggregate, \Countable
     /**
      * Returns a Cache-Control directive value by name.
      */
-    public function getCacheControlDirective(string $key): bool|string|null
+    public function getCacheControlDirective(string $key)
     {
         return $this->cacheControl[$key] ?? null;
     }

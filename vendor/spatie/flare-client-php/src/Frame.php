@@ -7,14 +7,17 @@ use Spatie\Backtrace\Frame as SpatieFrame;
 class Frame
 {
     public static function fromSpatieFrame(
-        SpatieFrame $frame,
-    ): self {
+        SpatieFrame $frame
+    ) {
         return new self($frame);
     }
 
+    protected SpatieFrame $frame;
+
     public function __construct(
-        protected SpatieFrame $frame,
+         $frame
     ) {
+        $this->frame = $frame;
     }
 
     public function toArray(): array

@@ -41,7 +41,7 @@ class UnicodeString extends AbstractUnicodeString
         }
     }
 
-    public function append(string ...$suffix): static
+    public function append(string ...$suffix)
     {
         $str = clone $this;
         $str->string = $this->string.(1 >= \count($suffix) ? ($suffix[0] ?? '') : implode('', $suffix));
@@ -176,7 +176,7 @@ class UnicodeString extends AbstractUnicodeString
         return false === $i ? null : $i;
     }
 
-    public function join(array $strings, string $lastGlue = null): static
+    public function join(array $strings, string $lastGlue = null)
     {
         $str = parent::join($strings, $lastGlue);
         normalizer_is_normalized($str->string) ?: $str->string = normalizer_normalize($str->string);
@@ -189,7 +189,7 @@ class UnicodeString extends AbstractUnicodeString
         return grapheme_strlen($this->string);
     }
 
-    public function normalize(int $form = self::NFC): static
+    public function normalize(int $form = self::NFC)
     {
         $str = clone $this;
 
@@ -205,7 +205,7 @@ class UnicodeString extends AbstractUnicodeString
         return $str;
     }
 
-    public function prepend(string ...$prefix): static
+    public function prepend(string ...$prefix)
     {
         $str = clone $this;
         $str->string = (1 >= \count($prefix) ? ($prefix[0] ?? '') : implode('', $prefix)).$this->string;
@@ -218,7 +218,7 @@ class UnicodeString extends AbstractUnicodeString
         return $str;
     }
 
-    public function replace(string $from, string $to): static
+    public function replace(string $from, string $to)
     {
         $str = clone $this;
         normalizer_is_normalized($from) ?: $from = normalizer_normalize($from);
@@ -245,7 +245,7 @@ class UnicodeString extends AbstractUnicodeString
         return $str;
     }
 
-    public function replaceMatches(string $fromRegexp, string|callable $to): static
+    public function replaceMatches(string $fromRegexp, string|callable $to)
     {
         $str = parent::replaceMatches($fromRegexp, $to);
         normalizer_is_normalized($str->string) ?: $str->string = normalizer_normalize($str->string);
@@ -253,7 +253,7 @@ class UnicodeString extends AbstractUnicodeString
         return $str;
     }
 
-    public function slice(int $start = 0, int $length = null): static
+    public function slice(int $start = 0, int $length = null)
     {
         $str = clone $this;
 
@@ -262,7 +262,7 @@ class UnicodeString extends AbstractUnicodeString
         return $str;
     }
 
-    public function splice(string $replacement, int $start = 0, int $length = null): static
+    public function splice(string $replacement, int $start = 0, int $length = null)
     {
         $str = clone $this;
 

@@ -91,7 +91,7 @@ class Table
      *
      * @return $this
      */
-    public function setStyle(TableStyle|string $name): static
+    public function setStyle(TableStyle|string $name)
     {
         $this->style = $this->resolveStyle($name);
 
@@ -113,7 +113,7 @@ class Table
      *
      * @return $this
      */
-    public function setColumnStyle(int $columnIndex, TableStyle|string $name): static
+    public function setColumnStyle(int $columnIndex, TableStyle|string $name)
     {
         $this->columnStyles[$columnIndex] = $this->resolveStyle($name);
 
@@ -135,7 +135,7 @@ class Table
      *
      * @return $this
      */
-    public function setColumnWidth(int $columnIndex, int $width): static
+    public function setColumnWidth(int $columnIndex, int $width)
     {
         $this->columnWidths[$columnIndex] = $width;
 
@@ -147,7 +147,7 @@ class Table
      *
      * @return $this
      */
-    public function setColumnWidths(array $widths): static
+    public function setColumnWidths(array $widths)
     {
         $this->columnWidths = [];
         foreach ($widths as $index => $width) {
@@ -165,7 +165,7 @@ class Table
      *
      * @return $this
      */
-    public function setColumnMaxWidth(int $columnIndex, int $width): static
+    public function setColumnMaxWidth(int $columnIndex, int $width)
     {
         if (!$this->output->getFormatter() instanceof WrappableOutputFormatterInterface) {
             throw new \LogicException(sprintf('Setting a maximum column width is only supported when using a "%s" formatter, got "%s".', WrappableOutputFormatterInterface::class, get_debug_type($this->output->getFormatter())));
@@ -179,7 +179,7 @@ class Table
     /**
      * @return $this
      */
-    public function setHeaders(array $headers): static
+    public function setHeaders(array $headers)
     {
         $headers = array_values($headers);
         if ($headers && !\is_array($headers[0])) {
@@ -204,7 +204,7 @@ class Table
     /**
      * @return $this
      */
-    public function addRows(array $rows): static
+    public function addRows(array $rows)
     {
         foreach ($rows as $row) {
             $this->addRow($row);
@@ -216,7 +216,7 @@ class Table
     /**
      * @return $this
      */
-    public function addRow(TableSeparator|array $row): static
+    public function addRow(TableSeparator|array $row)
     {
         if ($row instanceof TableSeparator) {
             $this->rows[] = $row;
@@ -234,7 +234,7 @@ class Table
      *
      * @return $this
      */
-    public function appendRow(TableSeparator|array $row): static
+    public function appendRow(TableSeparator|array $row)
     {
         if (!$this->output instanceof ConsoleSectionOutput) {
             throw new RuntimeException(sprintf('Output should be an instance of "%s" when calling "%s".', ConsoleSectionOutput::class, __METHOD__));
@@ -253,7 +253,7 @@ class Table
     /**
      * @return $this
      */
-    public function setRow(int|string $column, array $row): static
+    public function setRow(int|string $column, array $row)
     {
         $this->rows[$column] = $row;
 
@@ -263,7 +263,7 @@ class Table
     /**
      * @return $this
      */
-    public function setHeaderTitle(?string $title): static
+    public function setHeaderTitle(?string $title)
     {
         $this->headerTitle = $title;
 
@@ -273,7 +273,7 @@ class Table
     /**
      * @return $this
      */
-    public function setFooterTitle(?string $title): static
+    public function setFooterTitle(?string $title)
     {
         $this->footerTitle = $title;
 
@@ -283,7 +283,7 @@ class Table
     /**
      * @return $this
      */
-    public function setHorizontal(bool $horizontal = true): static
+    public function setHorizontal(bool $horizontal = true)
     {
         $this->displayOrientation = $horizontal ? self::DISPLAY_ORIENTATION_HORIZONTAL : self::DISPLAY_ORIENTATION_DEFAULT;
 
@@ -293,7 +293,7 @@ class Table
     /**
      * @return $this
      */
-    public function setVertical(bool $vertical = true): static
+    public function setVertical(bool $vertical = true)
     {
         $this->displayOrientation = $vertical ? self::DISPLAY_ORIENTATION_VERTICAL : self::DISPLAY_ORIENTATION_DEFAULT;
 

@@ -43,7 +43,7 @@ class TrimContextItemsStrategy extends AbstractTruncationStrategy
         return $contextItems;
     }
 
-    protected function trimContextItems(mixed &$value, mixed $key, int $threshold): mixed
+    protected function trimContextItems(mixed &$value, mixed $key, int $threshold)
     {
         if (is_array($value)) {
             if (count($value) > $threshold) {

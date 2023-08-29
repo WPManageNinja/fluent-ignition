@@ -187,7 +187,7 @@ class Process implements \IteratorAggregate
      *
      * @throws LogicException When proc_open is not installed
      */
-    public static function fromShellCommandline(string $command, string $cwd = null, array $env = null, mixed $input = null, ?float $timeout = 60): static
+    public static function fromShellCommandline(string $command, string $cwd = null, array $env = null, mixed $input = null, ?float $timeout = 60)
     {
         $process = new static([], $cwd, $env, $input, $timeout);
         $process->commandline = $command;
@@ -261,7 +261,7 @@ class Process implements \IteratorAggregate
      *
      * @final
      */
-    public function mustRun(callable $callback = null, array $env = []): static
+    public function mustRun(callable $callback = null, array $env = [])
     {
         if (0 !== $this->run($callback, $env)) {
             throw new ProcessFailedException($this);
@@ -380,7 +380,7 @@ class Process implements \IteratorAggregate
      *
      * @final
      */
-    public function restart(callable $callback = null, array $env = []): static
+    public function restart(callable $callback = null, array $env = [])
     {
         if ($this->isRunning()) {
             throw new RuntimeException('Process is already running.');
@@ -506,7 +506,7 @@ class Process implements \IteratorAggregate
      * @throws RuntimeException In case --enable-sigchild is activated and the process can't be killed
      * @throws RuntimeException In case of failure
      */
-    public function signal(int $signal): static
+    public function signal(int $signal)
     {
         $this->doSignal($signal, true);
 
@@ -521,7 +521,7 @@ class Process implements \IteratorAggregate
      * @throws RuntimeException In case the process is already running
      * @throws LogicException   if an idle timeout is set
      */
-    public function disableOutput(): static
+    public function disableOutput()
     {
         if ($this->isRunning()) {
             throw new RuntimeException('Disabling output while the process is running is not possible.');
@@ -542,7 +542,7 @@ class Process implements \IteratorAggregate
      *
      * @throws RuntimeException In case the process is already running
      */
-    public function enableOutput(): static
+    public function enableOutput()
     {
         if ($this->isRunning()) {
             throw new RuntimeException('Enabling output while the process is running is not possible.');
@@ -663,7 +663,7 @@ class Process implements \IteratorAggregate
      *
      * @return $this
      */
-    public function clearOutput(): static
+    public function clearOutput()
     {
         ftruncate($this->stdout, 0);
         fseek($this->stdout, 0);
@@ -718,7 +718,7 @@ class Process implements \IteratorAggregate
      *
      * @return $this
      */
-    public function clearErrorOutput(): static
+    public function clearErrorOutput()
     {
         ftruncate($this->stderr, 0);
         fseek($this->stderr, 0);
@@ -978,7 +978,7 @@ class Process implements \IteratorAggregate
      *
      * @throws InvalidArgumentException if the timeout is negative
      */
-    public function setTimeout(?float $timeout): static
+    public function setTimeout(?float $timeout)
     {
         $this->timeout = $this->validateTimeout($timeout);
 
@@ -995,7 +995,7 @@ class Process implements \IteratorAggregate
      * @throws LogicException           if the output is disabled
      * @throws InvalidArgumentException if the timeout is negative
      */
-    public function setIdleTimeout(?float $timeout): static
+    public function setIdleTimeout(?float $timeout)
     {
         if (null !== $timeout && $this->outputDisabled) {
             throw new LogicException('Idle timeout cannot be set while the output is disabled.');
@@ -1013,7 +1013,7 @@ class Process implements \IteratorAggregate
      *
      * @throws RuntimeException In case the TTY mode is not supported
      */
-    public function setTty(bool $tty): static
+    public function setTty(bool $tty)
     {
         if ('\\' === \DIRECTORY_SEPARATOR && $tty) {
             throw new RuntimeException('TTY mode is not supported on Windows platform.');
@@ -1041,7 +1041,7 @@ class Process implements \IteratorAggregate
      *
      * @return $this
      */
-    public function setPty(bool $bool): static
+    public function setPty(bool $bool)
     {
         $this->pty = $bool;
 
@@ -1075,7 +1075,7 @@ class Process implements \IteratorAggregate
      *
      * @return $this
      */
-    public function setWorkingDirectory(string $cwd): static
+    public function setWorkingDirectory(string $cwd)
     {
         $this->cwd = $cwd;
 
@@ -1097,7 +1097,7 @@ class Process implements \IteratorAggregate
      *
      * @return $this
      */
-    public function setEnv(array $env): static
+    public function setEnv(array $env)
     {
         $this->env = $env;
 
@@ -1125,7 +1125,7 @@ class Process implements \IteratorAggregate
      *
      * @throws LogicException In case the process is running
      */
-    public function setInput(mixed $input): static
+    public function setInput(mixed $input)
     {
         if ($this->isRunning()) {
             throw new LogicException('Input cannot be set while the process is running.');

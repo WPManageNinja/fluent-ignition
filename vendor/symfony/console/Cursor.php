@@ -33,7 +33,7 @@ final class Cursor
     /**
      * @return $this
      */
-    public function moveUp(int $lines = 1): static
+    public function moveUp(int $lines = 1)
     {
         $this->output->write(sprintf("\x1b[%dA", $lines));
 
@@ -43,7 +43,7 @@ final class Cursor
     /**
      * @return $this
      */
-    public function moveDown(int $lines = 1): static
+    public function moveDown(int $lines = 1)
     {
         $this->output->write(sprintf("\x1b[%dB", $lines));
 
@@ -53,7 +53,7 @@ final class Cursor
     /**
      * @return $this
      */
-    public function moveRight(int $columns = 1): static
+    public function moveRight(int $columns = 1)
     {
         $this->output->write(sprintf("\x1b[%dC", $columns));
 
@@ -63,7 +63,7 @@ final class Cursor
     /**
      * @return $this
      */
-    public function moveLeft(int $columns = 1): static
+    public function moveLeft(int $columns = 1)
     {
         $this->output->write(sprintf("\x1b[%dD", $columns));
 
@@ -73,7 +73,7 @@ final class Cursor
     /**
      * @return $this
      */
-    public function moveToColumn(int $column): static
+    public function moveToColumn(int $column)
     {
         $this->output->write(sprintf("\x1b[%dG", $column));
 
@@ -83,7 +83,7 @@ final class Cursor
     /**
      * @return $this
      */
-    public function moveToPosition(int $column, int $row): static
+    public function moveToPosition(int $column, int $row)
     {
         $this->output->write(sprintf("\x1b[%d;%dH", $row + 1, $column));
 
@@ -93,7 +93,7 @@ final class Cursor
     /**
      * @return $this
      */
-    public function savePosition(): static
+    public function savePosition()
     {
         $this->output->write("\x1b7");
 
@@ -103,7 +103,7 @@ final class Cursor
     /**
      * @return $this
      */
-    public function restorePosition(): static
+    public function restorePosition()
     {
         $this->output->write("\x1b8");
 
@@ -113,7 +113,7 @@ final class Cursor
     /**
      * @return $this
      */
-    public function hide(): static
+    public function hide()
     {
         $this->output->write("\x1b[?25l");
 
@@ -123,7 +123,7 @@ final class Cursor
     /**
      * @return $this
      */
-    public function show(): static
+    public function show()
     {
         $this->output->write("\x1b[?25h\x1b[?0c");
 
@@ -135,7 +135,7 @@ final class Cursor
      *
      * @return $this
      */
-    public function clearLine(): static
+    public function clearLine()
     {
         $this->output->write("\x1b[2K");
 
@@ -157,7 +157,7 @@ final class Cursor
      *
      * @return $this
      */
-    public function clearOutput(): static
+    public function clearOutput()
     {
         $this->output->write("\x1b[0J");
 
@@ -169,7 +169,7 @@ final class Cursor
      *
      * @return $this
      */
-    public function clearScreen(): static
+    public function clearScreen()
     {
         $this->output->write("\x1b[2J");
 

@@ -28,7 +28,7 @@ final class CompletionSuggestions
      *
      * @return $this
      */
-    public function suggestValue(string|Suggestion $value): static
+    public function suggestValue(string|Suggestion $value)
     {
         $this->valueSuggestions[] = !$value instanceof Suggestion ? new Suggestion($value) : $value;
 
@@ -42,7 +42,7 @@ final class CompletionSuggestions
      *
      * @return $this
      */
-    public function suggestValues(array $values): static
+    public function suggestValues(array $values)
     {
         foreach ($values as $value) {
             $this->suggestValue($value);
@@ -56,7 +56,7 @@ final class CompletionSuggestions
      *
      * @return $this
      */
-    public function suggestOption(InputOption $option): static
+    public function suggestOption(InputOption $option)
     {
         $this->optionSuggestions[] = $option;
 
@@ -70,7 +70,7 @@ final class CompletionSuggestions
      *
      * @return $this
      */
-    public function suggestOptions(array $options): static
+    public function suggestOptions(array $options)
     {
         foreach ($options as $option) {
             $this->suggestOption($option);

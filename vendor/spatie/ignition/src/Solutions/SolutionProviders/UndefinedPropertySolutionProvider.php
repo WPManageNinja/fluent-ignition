@@ -92,7 +92,7 @@ class UndefinedPropertySolutionProvider implements HasSolutionsForThrowable
      *
      * @return mixed
      */
-    protected function findPossibleProperty(string $class, string $invalidPropertyName): mixed
+    protected function findPossibleProperty(string $class, string $invalidPropertyName)
     {
         return $this->getAvailableProperties($class)
             ->sortByDesc(function (ReflectionProperty $property) use ($invalidPropertyName) {

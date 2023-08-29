@@ -59,7 +59,7 @@ class LocaleSwitcher implements LocaleAwareInterface
      *
      * @return T
      */
-    public function runWithLocale(string $locale, callable $callback): mixed
+    public function runWithLocale(string $locale, callable $callback)
     {
         $original = $this->getLocale();
         $this->setLocale($locale);

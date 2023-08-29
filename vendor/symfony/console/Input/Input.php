@@ -95,7 +95,7 @@ abstract class Input implements InputInterface, StreamableInputInterface
         return array_merge($this->definition->getArgumentDefaults(), $this->arguments);
     }
 
-    public function getArgument(string $name): mixed
+    public function getArgument(string $name)
     {
         if (!$this->definition->hasArgument($name)) {
             throw new InvalidArgumentException(sprintf('The "%s" argument does not exist.', $name));
@@ -126,7 +126,7 @@ abstract class Input implements InputInterface, StreamableInputInterface
         return array_merge($this->definition->getOptionDefaults(), $this->options);
     }
 
-    public function getOption(string $name): mixed
+    public function getOption(string $name)
     {
         if ($this->definition->hasNegation($name)) {
             if (null === $value = $this->getOption($this->definition->negationToName($name))) {

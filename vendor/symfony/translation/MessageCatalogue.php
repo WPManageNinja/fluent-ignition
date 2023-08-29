@@ -231,7 +231,7 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
         $this->resources[$resource->__toString()] = $resource;
     }
 
-    public function getMetadata(string $key = '', string $domain = 'messages'): mixed
+    public function getMetadata(string $key = '', string $domain = 'messages')
     {
         if ('' == $domain) {
             return $this->metadata;
@@ -272,7 +272,7 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
         }
     }
 
-    public function getCatalogueMetadata(string $key = '', string $domain = 'messages'): mixed
+    public function getCatalogueMetadata(string $key = '', string $domain = 'messages')
     {
         if (!$domain) {
             return $this->catalogueMetadata;

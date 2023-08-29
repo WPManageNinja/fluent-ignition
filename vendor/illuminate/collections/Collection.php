@@ -506,12 +506,16 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
             }
 
             foreach ($groupKeys as $groupKey) {
-                $groupKey = match (true) {
-                    is_bool($groupKey) => (int) $groupKey,
-                    $groupKey instanceof \BackedEnum => $groupKey->value,
-                    $groupKey instanceof \Stringable => (string) $groupKey,
-                    default => $groupKey,
-                };
+
+
+                if(is_bool($groupKey)){
+                    $groupKey  =(int) $groupKey;
+                }elseif ($groupKey instanceof \BackedEnum){
+                    $groupKey = $groupKey->value;
+                }
+                elseif ($groupKey instanceof \Stringable){
+                    $groupKey = (string) $groupKey;
+                }
 
                 if (! array_key_exists($groupKey, $results)) {
                     $results[$groupKey] = new static;
@@ -896,7 +900,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
 
         return new static($new);
     }
-
+    /**
     /**
      * Get the items with the specified keys.
      *
@@ -1368,7 +1372,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Sort the collection using the given callback.
      *
-     * @param  array<array-key, (callable(TValue, TValue): mixed)|(callable(TValue, TKey): mixed)|string|array{string, string}>|(callable(TValue, TKey): mixed)|string  $callback
+     * @param  array<array-key, (callable(TValue, TValue))|(callable(TValue, TKey))|string|array{string, string}>|(callable(TValue, TKey))|string  $callback
      * @param  int  $options
      * @param  bool  $descending
      * @return static
@@ -1406,7 +1410,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Sort the collection using multiple comparisons.
      *
-     * @param  array<array-key, (callable(TValue, TValue): mixed)|(callable(TValue, TKey): mixed)|string|array{string, string}>  $comparisons
+     * @param  array<array-key, (callable(TValue, TValue))|(callable(TValue, TKey))|string|array{string, string}>  $comparisons
      * @return static
      */
     protected function sortByMany(array $comparisons = [])
@@ -1448,7 +1452,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Sort the collection in descending order using the given callback.
      *
-     * @param  array<array-key, (callable(TValue, TValue): mixed)|(callable(TValue, TKey): mixed)|string|array{string, string}>|(callable(TValue, TKey): mixed)|string  $callback
+     * @param  array<array-key, (callable(TValue, TValue))|(callable(TValue, TKey))|string|array{string, string}>|(callable(TValue, TKey))|string  $callback
      * @param  int  $options
      * @return static
      */
@@ -1589,7 +1593,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Return only unique items from the collection array.
      *
-     * @param  (callable(TValue, TKey): mixed)|string|null  $key
+     * @param  (callable(TValue, TKey))|string|null  $key
      * @param  bool  $strict
      * @return static
      */
@@ -1727,7 +1731,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
      * @param  TKey  $key
      * @return TValue
      */
-    public function offsetGet($key): mixed
+    public function offsetGet($key)
     {
         return $this->items[$key];
     }
