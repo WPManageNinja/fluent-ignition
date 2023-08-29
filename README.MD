@@ -4,11 +4,11 @@
 
 ### Requirements
 
-- PHP 8.1 or higher
+- PHP 7.4 or higher
 
 ### Installation
 
-- Clone or download this pligin and place it in your `wp-content/plugins` directory.
+- Clone or download this plugin and place it in your `wp-content/plugins` directory.
 - Activate the plugin from the WordPress admin panel.
 - Make sure `WP_DEBUG` is set to `true` in your `wp-config.php` file.
 - Or add `define('WP_DEVELOPMENT_MODE', true);` in your `wp-config.php` file.
@@ -19,7 +19,7 @@
 - To enable dark mode, add `define('FLUENT_IGNITION_THEME', 'dark');` in your `wp-config.php` file.
 
 ### ATTENTION
-DO NOT USE THIS PLUGIN IN PRODUCTION SITE. THIS PLUGIN IS ONLY FOR DEVELOPMENT PURPOSE.
+DO NOT USE THIS PLUGIN IN THE PRODUCTION SITE. THIS PLUGIN IS ONLY FOR DEVELOPMENT PURPOSE.
 
 ### Packages Used
 
