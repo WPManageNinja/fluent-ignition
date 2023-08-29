@@ -64,7 +64,7 @@ class Session implements FlashBagAwareSessionInterface, \IteratorAggregate, \Cou
         return $this->getAttributeBag()->has($name);
     }
 
-    public function get(string $name, mixed $default = null): mixed
+    public function get(string $name, mixed $default = null)
     {
         return $this->getAttributeBag()->get($name, $default);
     }
@@ -90,7 +90,7 @@ class Session implements FlashBagAwareSessionInterface, \IteratorAggregate, \Cou
         $this->getAttributeBag()->replace($attributes);
     }
 
-    public function remove(string $name): mixed
+    public function remove(string $name)
     {
         return $this->getAttributeBag()->remove($name);
     }

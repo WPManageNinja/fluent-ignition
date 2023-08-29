@@ -1356,7 +1356,7 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
     /**
      * Sort the collection using the given callback.
      *
-     * @param  array<array-key, (callable(TValue, TValue): mixed)|(callable(TValue, TKey): mixed)|string|array{string, string}>|(callable(TValue, TKey): mixed)|string  $callback
+     * @param  array<array-key, (callable(TValue, TValue))|(callable(TValue, TKey))|string|array{string, string}>|(callable(TValue, TKey))|string  $callback
      * @param  int  $options
      * @param  bool  $descending
      * @return static
@@ -1369,7 +1369,7 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
     /**
      * Sort the collection in descending order using the given callback.
      *
-     * @param  array<array-key, (callable(TValue, TValue): mixed)|(callable(TValue, TKey): mixed)|string|array{string, string}>|(callable(TValue, TKey): mixed)|string  $callback
+     * @param  array<array-key, (callable(TValue, TValue))|(callable(TValue, TKey))|string|array{string, string}>|(callable(TValue, TKey))|string  $callback
      * @param  int  $options
      * @return static
      */
@@ -1505,7 +1505,7 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
     /**
      * Pass each item in the collection to the given callback, lazily.
      *
-     * @param  callable(TValue, TKey): mixed  $callback
+     * @param  callable(TValue, TKey)  $callback
      * @return static
      */
     public function tapEach(callable $callback)
@@ -1542,7 +1542,7 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
     /**
      * Return only unique items from the collection array.
      *
-     * @param  (callable(TValue, TKey): mixed)|string|null  $key
+     * @param  (callable(TValue, TKey))|string|null  $key
      * @param  bool  $strict
      * @return static
      */

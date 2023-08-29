@@ -26,7 +26,7 @@ interface ServiceProviderInterface extends ContainerInterface
     /**
      * @return T
      */
-    public function get(string $id): mixed;
+    public function get(string $id);
 
     public function has(string $id): bool;
 

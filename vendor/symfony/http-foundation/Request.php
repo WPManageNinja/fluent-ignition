@@ -294,7 +294,7 @@ class Request
     /**
      * Creates a new request with values from PHP's super globals.
      */
-    public static function createFromGlobals(): static
+    public static function createFromGlobals()
     {
         $request = self::createRequestFromFactory($_GET, $_POST, [], $_COOKIE, $_FILES, $_SERVER);
 
@@ -322,7 +322,7 @@ class Request
      * @param array                $server     The server parameters ($_SERVER)
      * @param string|resource|null $content    The raw body data
      */
-    public static function create(string $uri, string $method = 'GET', array $parameters = [], array $cookies = [], array $files = [], array $server = [], $content = null): static
+    public static function create(string $uri, string $method = 'GET', array $parameters = [], array $cookies = [], array $files = [], array $server = [], $content = null)
     {
         $server = array_replace([
             'SERVER_NAME' => 'localhost',
@@ -443,7 +443,7 @@ class Request
      * @param array|null $files      The FILES parameters
      * @param array|null $server     The SERVER parameters
      */
-    public function duplicate(array $query = null, array $request = null, array $attributes = null, array $cookies = null, array $files = null, array $server = null): static
+    public function duplicate(array $query = null, array $request = null, array $attributes = null, array $cookies = null, array $files = null, array $server = null)
     {
         $dup = clone $this;
         if (null !== $query) {
@@ -691,7 +691,7 @@ class Request
      *
      * @internal use explicit input sources instead
      */
-    public function get(string $key, mixed $default = null): mixed
+    public function get(string $key, mixed $default = null)
     {
         if ($this !== $result = $this->attributes->get($key, $this)) {
             return $result;
@@ -909,7 +909,7 @@ class Request
      *
      * @return int|string|null Can be a string if fetched from the server bag
      */
-    public function getPort(): int|string|null
+    public function getPort()
     {
         if ($this->isFromTrustedProxy() && $host = $this->getTrustedValues(self::HEADER_X_FORWARDED_PORT)) {
             $host = $host[0];
@@ -1300,7 +1300,7 @@ class Request
      *
      * @return void
      */
-    public function setFormat(?string $format, string|array $mimeTypes)
+    public function setFormat(?string $format, $mimeTypes)
     {
         if (null === static::$formats) {
             static::initializeFormats();
@@ -1952,7 +1952,7 @@ class Request
             if (class_exists(\Locale::class, false)) {
                 \Locale::setDefault($locale);
             }
-        } catch (\Exception) {
+        } catch (\Exception $e) {
         }
     }
 
@@ -1975,7 +1975,7 @@ class Request
         return null;
     }
 
-    private static function createRequestFromFactory(array $query = [], array $request = [], array $attributes = [], array $cookies = [], array $files = [], array $server = [], $content = null): static
+    private static function createRequestFromFactory(array $query = [], array $request = [], array $attributes = [], array $cookies = [], array $files = [], array $server = [], $content = null)
     {
         if (self::$requestFactory) {
             $request = (self::$requestFactory)($query, $request, $attributes, $cookies, $files, $server, $content);

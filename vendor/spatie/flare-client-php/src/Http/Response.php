@@ -19,12 +19,12 @@ class Response
         $this->error = $error;
     }
 
-    public function getHeaders(): mixed
+    public function getHeaders()
     {
         return $this->headers;
     }
 
-    public function getBody(): mixed
+    public function getBody()
     {
         return $this->body;
     }
@@ -34,7 +34,7 @@ class Response
         return $this->body != false;
     }
 
-    public function getError(): mixed
+    public function getError()
     {
         return $this->error;
     }

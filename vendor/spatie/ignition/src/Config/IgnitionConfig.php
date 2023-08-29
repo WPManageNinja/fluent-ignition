@@ -16,11 +16,14 @@ class IgnitionConfig implements Arrayable
         return (new self())->loadConfigFile();
     }
 
+    private $options = null;
+
     /**
      * @param array<string, mixed> $options
      */
-    public function __construct(protected array $options = [])
+    public function __construct( array $options = [])
     {
+        $this->options = $options;
         $defaultOptions = $this->getDefaultOptions();
 
         $this->options = array_merge($defaultOptions, $options);
@@ -39,7 +42,7 @@ class IgnitionConfig implements Arrayable
         try {
             /** @phpstan-ignore-next-line  */
             return app(ConfigManager::class);
-        } catch (Throwable) {
+        } catch (Throwable $e) {
             return new FileConfigManager();
         }
     }

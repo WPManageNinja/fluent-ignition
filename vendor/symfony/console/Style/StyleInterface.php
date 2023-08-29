@@ -91,12 +91,12 @@ interface StyleInterface
     /**
      * Asks a question.
      */
-    public function ask(string $question, string $default = null, callable $validator = null): mixed;
+    public function ask(string $question, string $default = null, callable $validator = null);
 
     /**
      * Asks a question with the user input hidden.
      */
-    public function askHidden(string $question, callable $validator = null): mixed;
+    public function askHidden(string $question, callable $validator = null);
 
     /**
      * Asks for confirmation.
@@ -106,7 +106,7 @@ interface StyleInterface
     /**
      * Asks a choice question.
      */
-    public function choice(string $question, array $choices, mixed $default = null): mixed;
+    public function choice(string $question, array $choices, mixed $default = null);
 
     /**
      * Add newline(s).

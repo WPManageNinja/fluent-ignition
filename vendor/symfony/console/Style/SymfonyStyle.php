@@ -249,7 +249,7 @@ class SymfonyStyle extends OutputStyle
         $this->horizontalTable($headers, [$row]);
     }
 
-    public function ask(string $question, string $default = null, callable $validator = null): mixed
+    public function ask(string $question, string $default = null, callable $validator = null)
     {
         $question = new Question($question, $default);
         $question->setValidator($validator);
@@ -257,7 +257,7 @@ class SymfonyStyle extends OutputStyle
         return $this->askQuestion($question);
     }
 
-    public function askHidden(string $question, callable $validator = null): mixed
+    public function askHidden(string $question, callable $validator = null)
     {
         $question = new Question($question);
 
@@ -272,7 +272,7 @@ class SymfonyStyle extends OutputStyle
         return $this->askQuestion(new ConfirmationQuestion($question, $default));
     }
 
-    public function choice(string $question, array $choices, mixed $default = null, bool $multiSelect = false): mixed
+    public function choice(string $question, array $choices, mixed $default = null, bool $multiSelect = false)
     {
         if (null !== $default) {
             $values = array_flip($choices);
@@ -335,7 +335,7 @@ class SymfonyStyle extends OutputStyle
         $this->newLine(2);
     }
 
-    public function askQuestion(Question $question): mixed
+    public function askQuestion(Question $question)
     {
         if ($this->input->isInteractive()) {
             $this->autoPrependBlock();

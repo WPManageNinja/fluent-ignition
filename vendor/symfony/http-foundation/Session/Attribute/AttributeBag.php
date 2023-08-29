@@ -62,7 +62,7 @@ class AttributeBag implements AttributeBagInterface, \IteratorAggregate, \Counta
         return \array_key_exists($name, $this->attributes);
     }
 
-    public function get(string $name, mixed $default = null): mixed
+    public function get(string $name, mixed $default = null)
     {
         return \array_key_exists($name, $this->attributes) ? $this->attributes[$name] : $default;
     }
@@ -91,7 +91,7 @@ class AttributeBag implements AttributeBagInterface, \IteratorAggregate, \Counta
         }
     }
 
-    public function remove(string $name): mixed
+    public function remove(string $name)
     {
         $retval = null;
         if (\array_key_exists($name, $this->attributes)) {
@@ -102,7 +102,7 @@ class AttributeBag implements AttributeBagInterface, \IteratorAggregate, \Counta
         return $retval;
     }
 
-    public function clear(): mixed
+    public function clear()
     {
         $return = $this->attributes;
         $this->attributes = [];

@@ -58,7 +58,7 @@ class ChoiceQuestion extends Question
      *
      * @return $this
      */
-    public function setMultiselect(bool $multiselect): static
+    public function setMultiselect(bool $multiselect)
     {
         $this->multiselect = $multiselect;
         $this->setValidator($this->getDefaultValidator());
@@ -87,7 +87,7 @@ class ChoiceQuestion extends Question
      *
      * @return $this
      */
-    public function setPrompt(string $prompt): static
+    public function setPrompt(string $prompt)
     {
         $this->prompt = $prompt;
 
@@ -101,7 +101,7 @@ class ChoiceQuestion extends Question
      *
      * @return $this
      */
-    public function setErrorMessage(string $errorMessage): static
+    public function setErrorMessage(string $errorMessage)
     {
         $this->errorMessage = $errorMessage;
         $this->setValidator($this->getDefaultValidator());

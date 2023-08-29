@@ -18,22 +18,47 @@ class ErrorPageViewModel
      * @param array<int, Solution> $solutions
      * @param string|null $solutionTransformerClass
      */
+
+    protected $throwable;
+    protected IgnitionConfig $ignitionConfig;
+    protected Report $report;
+    protected array $solutions;
+    protected ?string $solutionTransformerClass = null;
+    protected string $customHtmlHead = '';
+    protected string $customHtmlBody = '';
+
     public function __construct(
-        protected ?Throwable $throwable,
-        protected IgnitionConfig $ignitionConfig,
-        protected Report $report,
-        protected array $solutions,
-        protected ?string $solutionTransformerClass = null,
-        protected string $customHtmlHead = '',
-        protected string $customHtmlBody = ''
-    ) {
+                        $throwable,
+         IgnitionConfig $ignitionConfig,
+         Report         $report,
+         array          $solutions,
+         string        $solutionTransformerClass = null,
+                        string         $customHtmlHead = '',
+                        string         $customHtmlBody = ''
+    )
+    {
+
+        $this->throwable = $throwable;
+        $this->ignitionConfig = $ignitionConfig;
+        $this->report = $report;
+        $this->solutions = $solutions;
+        $this->solutionTransformerClass = $solutionTransformerClass;
+        $this->customHtmlHead = $customHtmlHead;
+        $this->customHtmlBody = $customHtmlBody;
+
         $this->solutionTransformerClass ??= SolutionTransformer::class;
     }
 
     public function throwableString(): string
     {
-        if (! $this->throwable) {
+        if (!$this->throwable) {
             return '';
+        }
+
+        $traceString = null;
+
+        if(!empty($this->report->getThrowable())){
+            $traceString = $this->report->getThrowable()->getTraceAsString();
         }
 
         $throwableString = sprintf(
@@ -42,7 +67,7 @@ class ErrorPageViewModel
             $this->throwable->getMessage(),
             $this->throwable->getFile(),
             $this->throwable->getLine(),
-            $this->report->getThrowable()?->getTraceAsString()
+            $traceString
         );
 
         return htmlspecialchars($throwableString);
@@ -90,18 +115,18 @@ class ErrorPageViewModel
         return $this->report->toArray();
     }
 
-    public function jsonEncode(mixed $data): string
+    public function jsonEncode( $data): string
     {
         $jsonOptions = JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT;
 
-        return (string) json_encode($data, $jsonOptions);
+        return (string)json_encode($data, $jsonOptions);
     }
 
     public function getAssetContents(string $asset): string
     {
-        $assetPath = __DIR__."/../../resources/compiled/{$asset}";
+        $assetPath = __DIR__ . "/../../resources/compiled/{$asset}";
 
-        return (string) file_get_contents($assetPath);
+        return (string)file_get_contents($assetPath);
     }
 
     /**

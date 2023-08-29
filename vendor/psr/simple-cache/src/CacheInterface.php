@@ -15,7 +15,7 @@ interface CacheInterface
      * @throws \Psr\SimpleCache\InvalidArgumentException
      *   MUST be thrown if the $key string is not a legal value.
      */
-    public function get(string $key, mixed $default = null): mixed;
+    public function get(string $key, mixed $default = null);
 
     /**
      * Persists data in the cache, uniquely referenced by a key with an optional expiration TTL time.

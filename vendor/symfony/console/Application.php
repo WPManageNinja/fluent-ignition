@@ -1222,7 +1222,7 @@ class Application implements ResetInterface
      *
      * @return $this
      */
-    public function setDefaultCommand(string $commandName, bool $isSingleCommand = false): static
+    public function setDefaultCommand(string $commandName, bool $isSingleCommand = false)
     {
         $this->defaultCommand = explode('|', ltrim($commandName, '|'))[0];
 

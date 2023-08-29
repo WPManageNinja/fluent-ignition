@@ -360,7 +360,7 @@ class Command
      *
      * @see execute()
      */
-    public function setCode(callable $code): static
+    public function setCode(callable $code)
     {
         if ($code instanceof \Closure) {
             $r = new \ReflectionFunction($code);
@@ -415,7 +415,7 @@ class Command
      *
      * @return $this
      */
-    public function setDefinition(array|InputDefinition $definition): static
+    public function setDefinition(array|InputDefinition $definition)
     {
         if ($definition instanceof InputDefinition) {
             $this->definition = $definition;
@@ -460,7 +460,7 @@ class Command
      *
      * @throws InvalidArgumentException When argument mode is not valid
      */
-    public function addArgument(string $name, int $mode = null, string $description = '', mixed $default = null /* array|\Closure $suggestedValues = null */): static
+    public function addArgument(string $name, int $mode = null, string $description = '', mixed $default = null /* array|\Closure $suggestedValues = null */)
     {
         $suggestedValues = 5 <= \func_num_args() ? func_get_arg(4) : [];
         if (!\is_array($suggestedValues) && !$suggestedValues instanceof \Closure) {
@@ -484,7 +484,7 @@ class Command
      *
      * @throws InvalidArgumentException If option mode is invalid or incompatible
      */
-    public function addOption(string $name, string|array $shortcut = null, int $mode = null, string $description = '', mixed $default = null /* array|\Closure $suggestedValues = [] */): static
+    public function addOption(string $name, string|array $shortcut = null, int $mode = null, string $description = '', mixed $default = null /* array|\Closure $suggestedValues = [] */)
     {
         $suggestedValues = 6 <= \func_num_args() ? func_get_arg(5) : [];
         if (!\is_array($suggestedValues) && !$suggestedValues instanceof \Closure) {
@@ -508,7 +508,7 @@ class Command
      *
      * @throws InvalidArgumentException When the name is invalid
      */
-    public function setName(string $name): static
+    public function setName(string $name)
     {
         $this->validateName($name);
 
@@ -525,7 +525,7 @@ class Command
      *
      * @return $this
      */
-    public function setProcessTitle(string $title): static
+    public function setProcessTitle(string $title)
     {
         $this->processTitle = $title;
 
@@ -545,7 +545,7 @@ class Command
      *
      * @return $this
      */
-    public function setHidden(bool $hidden = true): static
+    public function setHidden(bool $hidden = true)
     {
         $this->hidden = $hidden;
 
@@ -565,7 +565,7 @@ class Command
      *
      * @return $this
      */
-    public function setDescription(string $description): static
+    public function setDescription(string $description)
     {
         $this->description = $description;
 
@@ -585,7 +585,7 @@ class Command
      *
      * @return $this
      */
-    public function setHelp(string $help): static
+    public function setHelp(string $help)
     {
         $this->help = $help;
 
@@ -630,7 +630,7 @@ class Command
      *
      * @throws InvalidArgumentException When an alias is invalid
      */
-    public function setAliases(iterable $aliases): static
+    public function setAliases(iterable $aliases)
     {
         $list = [];
 
@@ -673,7 +673,7 @@ class Command
      *
      * @return $this
      */
-    public function addUsage(string $usage): static
+    public function addUsage(string $usage)
     {
         if (!str_starts_with($usage, $this->name)) {
             $usage = sprintf('%s %s', $this->name, $usage);
@@ -700,7 +700,7 @@ class Command
      * @throws LogicException           if no HelperSet is defined
      * @throws InvalidArgumentException if the helper is not defined
      */
-    public function getHelper(string $name): mixed
+    public function getHelper(string $name)
     {
         if (null === $this->helperSet) {
             throw new LogicException(sprintf('Cannot retrieve helper "%s" because there is no HelperSet defined. Did you forget to add your command to the application or to set the application on the command using the setApplication() method? You can also set the HelperSet directly using the setHelperSet() method.', $name));

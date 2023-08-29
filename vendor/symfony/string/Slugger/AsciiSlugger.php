@@ -92,7 +92,7 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
      *                           false will disable emoji,
      *                           and a string to use a specific locale
      */
-    public function withEmoji(bool|string $emoji = true): static
+    public function withEmoji(bool|string $emoji = true)
     {
         if (false !== $emoji && !class_exists(EmojiTransliterator::class)) {
             throw new \LogicException(sprintf('You cannot use the "%s()" method as the "symfony/intl" package is not installed. Try running "composer require symfony/intl".', __METHOD__));

@@ -32,7 +32,7 @@ interface HeaderInterface
      *
      * The return type depends on the Header concrete class.
      */
-    public function getBody(): mixed;
+    public function getBody();
 
     /**
      * @return void

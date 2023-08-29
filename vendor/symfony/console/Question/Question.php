@@ -71,7 +71,7 @@ class Question
      *
      * @return $this
      */
-    public function setMultiline(bool $multiline): static
+    public function setMultiline(bool $multiline)
     {
         $this->multiline = $multiline;
 
@@ -93,7 +93,7 @@ class Question
      *
      * @throws LogicException In case the autocompleter is also used
      */
-    public function setHidden(bool $hidden): static
+    public function setHidden(bool $hidden)
     {
         if ($this->autocompleterCallback) {
             throw new LogicException('A hidden question cannot use the autocompleter.');
@@ -117,7 +117,7 @@ class Question
      *
      * @return $this
      */
-    public function setHiddenFallback(bool $fallback): static
+    public function setHiddenFallback(bool $fallback)
     {
         $this->hiddenFallback = $fallback;
 
@@ -141,7 +141,7 @@ class Question
      *
      * @throws LogicException
      */
-    public function setAutocompleterValues(?iterable $values): static
+    public function setAutocompleterValues(?iterable $values)
     {
         if (\is_array($values)) {
             $values = $this->isAssoc($values) ? array_merge(array_keys($values), array_values($values)) : array_values($values);
@@ -175,7 +175,7 @@ class Question
      *
      * @return $this
      */
-    public function setAutocompleterCallback(callable $callback = null): static
+    public function setAutocompleterCallback(callable $callback = null)
     {
         if (1 > \func_num_args()) {
             trigger_deprecation('symfony/console', '6.2', 'Calling "%s()" without any arguments is deprecated, pass null explicitly instead.', __METHOD__);
@@ -194,7 +194,7 @@ class Question
      *
      * @return $this
      */
-    public function setValidator(callable $validator = null): static
+    public function setValidator(callable $validator = null)
     {
         if (1 > \func_num_args()) {
             trigger_deprecation('symfony/console', '6.2', 'Calling "%s()" without any arguments is deprecated, pass null explicitly instead.', __METHOD__);
@@ -221,7 +221,7 @@ class Question
      *
      * @throws InvalidArgumentException in case the number of attempts is invalid
      */
-    public function setMaxAttempts(?int $attempts): static
+    public function setMaxAttempts(?int $attempts)
     {
         if (null !== $attempts && $attempts < 1) {
             throw new InvalidArgumentException('Maximum number of attempts must be a positive value.');
@@ -249,7 +249,7 @@ class Question
      *
      * @return $this
      */
-    public function setNormalizer(callable $normalizer): static
+    public function setNormalizer(callable $normalizer)
     {
         $this->normalizer = $normalizer(...);
 
@@ -282,7 +282,7 @@ class Question
     /**
      * @return $this
      */
-    public function setTrimmable(bool $trimmable): static
+    public function setTrimmable(bool $trimmable)
     {
         $this->trimmable = $trimmable;
 

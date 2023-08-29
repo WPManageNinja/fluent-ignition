@@ -14,16 +14,7 @@ if ((defined('WP_DEBUG') && WP_DEBUG) || (defined('WP_DEVELOPMENT_MODE') && WP_D
     // run if php version is greater than 8.1 or larger
     if (version_compare(phpversion(), '8.1.0', '>=')) {
 
-        $theme = 'light';
-        if (defined('FLUENT_IGNITION_THEME')) {
-            $theme = FLUENT_IGNITION_THEME;
-        }
 
-        require_once __DIR__ . '/vendor/autoload.php';
-        \Spatie\Ignition\Ignition::make()
-            ->applicationPath(ABSPATH)
-            ->setTheme($theme)
-            ->register();
 
     } else {
         add_action('admin_notices', function () {
@@ -31,6 +22,17 @@ if ((defined('WP_DEBUG') && WP_DEBUG) || (defined('WP_DEVELOPMENT_MODE') && WP_D
         });
     }
 }
+
+$theme = 'light';
+if (defined('FLUENT_IGNITION_THEME')) {
+    $theme = FLUENT_IGNITION_THEME;
+}
+
+require_once __DIR__ . '/vendor/autoload.php';
+\Spatie\Ignition\Ignition::make()
+    ->applicationPath(ABSPATH)
+    ->setTheme($theme)
+    ->register();
 
 
 

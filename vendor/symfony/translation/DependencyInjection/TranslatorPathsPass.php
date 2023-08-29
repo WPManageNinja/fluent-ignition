@@ -86,7 +86,7 @@ class TranslatorPathsPass extends AbstractRecursivePass
         }
     }
 
-    protected function processValue(mixed $value, bool $isRoot = false): mixed
+    protected function processValue(mixed $value, bool $isRoot = false)
     {
         if ($value instanceof Reference) {
             if ('translator' === (string) $value) {

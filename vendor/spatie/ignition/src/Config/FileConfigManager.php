@@ -130,7 +130,7 @@ class FileConfigManager implements ConfigManager
     {
         try {
             $content = json_encode($options, JSON_THROW_ON_ERROR);
-        } catch (Throwable) {
+        } catch (Throwable $e) {
             return false;
         }
 

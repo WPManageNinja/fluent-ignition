@@ -20,12 +20,8 @@ use Symfony\Component\HttpFoundation\Exception\BadRequestException;
  */
 final class InputBag extends ParameterBag
 {
-    /**
-     * Returns a scalar input value by name.
-     *
-     * @param string|int|float|bool|null $default The default value if the input key does not exist
-     */
-    public function get(string $key, mixed $default = null): string|int|float|bool|null
+
+    public function get( $key, $default = null)
     {
         if (null !== $default && !\is_scalar($default) && !$default instanceof \Stringable) {
             throw new \InvalidArgumentException(sprintf('Expected a scalar value as a 2nd argument to "%s()", "%s" given.', __METHOD__, get_debug_type($default)));
@@ -64,7 +60,7 @@ final class InputBag extends ParameterBag
      *
      * @param string|int|float|bool|array|null $value
      */
-    public function set(string $key, mixed $value): void
+    public function set( $key,  $value): void
     {
         if (null !== $value && !\is_scalar($value) && !\is_array($value) && !$value instanceof \Stringable) {
             throw new \InvalidArgumentException(sprintf('Expected a scalar, or an array as a 2nd argument to "%s()", "%s" given.', __METHOD__, get_debug_type($value)));
@@ -79,7 +75,7 @@ final class InputBag extends ParameterBag
      * @template T of \BackedEnum
      *
      * @param class-string<T> $class
-     * @param ?T              $default
+     * @param ?T $default
      *
      * @return ?T
      */
@@ -98,10 +94,10 @@ final class InputBag extends ParameterBag
     public function getString(string $key, string $default = ''): string
     {
         // Shortcuts the parent method because the validation on scalar is already done in get().
-        return (string) $this->get($key, $default);
+        return (string)$this->get($key, $default);
     }
 
-    public function filter(string $key, mixed $default = null, int $filter = \FILTER_DEFAULT, mixed $options = []): mixed
+    public function filter(string $key, mixed $default = null, int $filter = \FILTER_DEFAULT, $options = [])
     {
         $value = $this->has($key) ? $this->all()[$key] : $default;
 
@@ -132,7 +128,7 @@ final class InputBag extends ParameterBag
         $method = ($method['object'] ?? null) === $this ? $method['function'] : 'filter';
         $hint = 'filter' === $method ? 'pass' : 'use method "filter()" with';
 
-        trigger_deprecation('symfony/http-foundation', '6.3', 'Ignoring invalid values when using "%s::%s(\'%s\')" is deprecated and will throw a "%s" in 7.0; '.$hint.' flag "FILTER_NULL_ON_FAILURE" to keep ignoring them.', $this::class, $method, $key, BadRequestException::class);
+        trigger_deprecation('symfony/http-foundation', '6.3', 'Ignoring invalid values when using "%s::%s(\'%s\')" is deprecated and will throw a "%s" in 7.0; ' . $hint . ' flag "FILTER_NULL_ON_FAILURE" to keep ignoring them.', get_class($this), $method, $key, BadRequestException::class);
 
         return false;
     }

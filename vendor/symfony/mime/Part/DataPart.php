@@ -57,7 +57,7 @@ class DataPart extends TextPart
     /**
      * @return $this
      */
-    public function asInline(): static
+    public function asInline()
     {
         return $this->setDisposition('inline');
     }
@@ -65,7 +65,7 @@ class DataPart extends TextPart
     /**
      * @return $this
      */
-    public function setContentId(string $cid): static
+    public function setContentId(string $cid)
     {
         if (!str_contains($cid, '@')) {
             throw new InvalidArgumentException(sprintf('Invalid cid "%s".', $cid));

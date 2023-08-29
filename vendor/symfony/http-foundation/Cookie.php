@@ -41,7 +41,7 @@ class Cookie
     /**
      * Creates cookie from raw header string.
      */
-    public static function fromString(string $cookie, bool $decode = false): static
+    public static function fromString(string $cookie, bool $decode = false)
     {
         $data = [
             'expires' => 0,
@@ -117,7 +117,7 @@ class Cookie
     /**
      * Creates a cookie copy with a new value.
      */
-    public function withValue(?string $value): static
+    public function withValue(?string $value)
     {
         $cookie = clone $this;
         $cookie->value = $value;
@@ -128,7 +128,7 @@ class Cookie
     /**
      * Creates a cookie copy with a new domain that the cookie is available to.
      */
-    public function withDomain(?string $domain): static
+    public function withDomain(?string $domain)
     {
         $cookie = clone $this;
         $cookie->domain = $domain;
@@ -139,7 +139,7 @@ class Cookie
     /**
      * Creates a cookie copy with a new time the cookie expires.
      */
-    public function withExpires(int|string|\DateTimeInterface $expire = 0): static
+    public function withExpires(int|string|\DateTimeInterface $expire = 0)
     {
         $cookie = clone $this;
         $cookie->expire = self::expiresTimestamp($expire);
@@ -169,7 +169,7 @@ class Cookie
     /**
      * Creates a cookie copy with a new path on the server in which the cookie will be available on.
      */
-    public function withPath(string $path): static
+    public function withPath(string $path)
     {
         $cookie = clone $this;
         $cookie->path = '' === $path ? '/' : $path;
@@ -180,7 +180,7 @@ class Cookie
     /**
      * Creates a cookie copy that only be transmitted over a secure HTTPS connection from the client.
      */
-    public function withSecure(bool $secure = true): static
+    public function withSecure(bool $secure = true)
     {
         $cookie = clone $this;
         $cookie->secure = $secure;
@@ -191,7 +191,7 @@ class Cookie
     /**
      * Creates a cookie copy that be accessible only through the HTTP protocol.
      */
-    public function withHttpOnly(bool $httpOnly = true): static
+    public function withHttpOnly(bool $httpOnly = true)
     {
         $cookie = clone $this;
         $cookie->httpOnly = $httpOnly;
@@ -202,7 +202,7 @@ class Cookie
     /**
      * Creates a cookie copy that uses no url encoding.
      */
-    public function withRaw(bool $raw = true): static
+    public function withRaw(bool $raw = true)
     {
         if ($raw && false !== strpbrk($this->name, self::RESERVED_CHARS_LIST)) {
             throw new \InvalidArgumentException(sprintf('The cookie name "%s" contains invalid characters.', $this->name));
@@ -219,7 +219,7 @@ class Cookie
      *
      * @param self::SAMESITE_*|''|null $sameSite
      */
-    public function withSameSite(?string $sameSite): static
+    public function withSameSite(?string $sameSite)
     {
         if ('' === $sameSite) {
             $sameSite = null;

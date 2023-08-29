@@ -112,7 +112,7 @@ trait TesterTrait
      *
      * @return $this
      */
-    public function setInputs(array $inputs): static
+    public function setInputs(array $inputs)
     {
         $this->inputs = $inputs;
 

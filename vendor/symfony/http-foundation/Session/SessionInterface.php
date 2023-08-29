@@ -95,7 +95,7 @@ interface SessionInterface
     /**
      * Returns an attribute.
      */
-    public function get(string $name, mixed $default = null): mixed;
+    public function get(string $name, mixed $default = null);
 
     /**
      * Sets an attribute.
@@ -121,7 +121,7 @@ interface SessionInterface
      *
      * @return mixed The removed value or null when it does not exist
      */
-    public function remove(string $name): mixed;
+    public function remove(string $name);
 
     /**
      * Clears all attributes.

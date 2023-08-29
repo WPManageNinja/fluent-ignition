@@ -63,7 +63,7 @@ class Flare
     protected ?Container $container = null;
 
     /** @var array<class-string<ArgumentReducer>|ArgumentReducer>|ArgumentReducers|null */
-    protected null|array|ArgumentReducers $argumentReducers = null;
+    protected  $argumentReducers;
 
     protected bool $withStackFrameArguments = true;
 
@@ -138,7 +138,7 @@ class Flare
     }
 
     /** @param array<class-string<ArgumentReducer>|ArgumentReducer>|ArgumentReducers|null $argumentReducers */
-    public function argumentReducers(null|array|ArgumentReducers $argumentReducers): self
+    public function argumentReducers( $argumentReducers): self
     {
         $this->argumentReducers = $argumentReducers;
 
@@ -169,7 +169,7 @@ class Flare
     public function __construct(
         Client $client,
         ContextProviderDetector $contextDetector = null,
-        array $middleware = [],
+        array $middleware = []
     ) {
         $this->client = $client;
         $this->recorder = new GlowRecorder();
@@ -414,6 +414,15 @@ class Flare
 
     public function createReport(Throwable $throwable): Report
     {
+
+        if(isset($this->argumentReducers)){
+
+        }else{
+           // $this->argumentReducers = null;
+        }
+
+        //var_dump($this->argumentReducers??null);
+
         $report = Report::createForThrowable(
             $throwable,
             $this->contextDetector->detectCurrentContext(),
@@ -422,6 +431,8 @@ class Flare
             $this->argumentReducers,
             $this->withStackFrameArguments
         );
+
+        
 
         return $this->applyMiddlewareToReport($report);
     }

@@ -37,7 +37,7 @@ class ProcessUtils
      *
      * @throws InvalidArgumentException In case the input is not valid
      */
-    public static function validateInput(string $caller, mixed $input): mixed
+    public static function validateInput(string $caller, mixed $input)
     {
         if (null !== $input) {
             if (\is_resource($input)) {

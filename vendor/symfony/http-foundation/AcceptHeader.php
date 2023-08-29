@@ -89,7 +89,7 @@ class AcceptHeader
      *
      * @return $this
      */
-    public function add(AcceptHeaderItem $item): static
+    public function add(AcceptHeaderItem $item)
     {
         $this->items[$item->getValue()] = $item;
         $this->sorted = false;

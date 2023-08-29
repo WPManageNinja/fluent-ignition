@@ -227,7 +227,7 @@ trait EnumeratesValues
     /**
      * Execute a callback over each item.
      *
-     * @param  callable(TValue, TKey): mixed  $callback
+     * @param  callable(TValue, TKey)  $callback
      * @return $this
      */
     public function each(callable $callback)
@@ -244,7 +244,7 @@ trait EnumeratesValues
     /**
      * Execute a callback over each nested chunk of items.
      *
-     * @param  callable(...mixed): mixed  $callback
+     * @param  callable(...mixed)  $callback
      * @return static
      */
     public function eachSpread(callable $callback)
@@ -503,7 +503,7 @@ trait EnumeratesValues
     /**
      * Get the sum of the given values.
      *
-     * @param  (callable(TValue): mixed)|string|null  $callback
+     * @param  (callable(TValue))|string|null  $callback
      * @return mixed
      */
     public function sum($callback = null)
@@ -846,7 +846,7 @@ trait EnumeratesValues
     /**
      * Pass the collection to the given callback and then return it.
      *
-     * @param  callable($this): mixed  $callback
+     * @param  callable($this)  $callback
      * @return $this
      */
     public function tap(callable $callback)
@@ -859,7 +859,7 @@ trait EnumeratesValues
     /**
      * Return only unique items from the collection array.
      *
-     * @param  (callable(TValue, TKey): mixed)|string|null  $key
+     * @param  (callable(TValue, TKey))|string|null  $key
      * @param  bool  $strict
      * @return static
      */
@@ -881,7 +881,7 @@ trait EnumeratesValues
     /**
      * Return only unique items from the collection array using strict comparison.
      *
-     * @param  (callable(TValue, TKey): mixed)|string|null  $key
+     * @param  (callable(TValue, TKey))|string|null  $key
      * @return static
      */
     public function uniqueStrict($key = null)
@@ -1016,15 +1016,32 @@ trait EnumeratesValues
             return $items;
         }
 
-        return match (true) {
-            $items instanceof Enumerable => $items->all(),
-            $items instanceof Arrayable => $items->toArray(),
-            $items instanceof Traversable => iterator_to_array($items),
-            $items instanceof Jsonable => json_decode($items->toJson(), true),
-            $items instanceof JsonSerializable => (array) $items->jsonSerialize(),
-            $items instanceof UnitEnum => [$items],
-            default => (array) $items,
-        };
+        if( $items instanceof Enumerable){
+            return $items->all();
+        }
+
+        if( $items instanceof Arrayable){
+            return $items->toArray();
+        }
+
+        if( $items instanceof Traversable){
+            return json_decode($items->toJson(), true);
+        }
+
+        if( $items instanceof Jsonable){
+            return json_decode($items->toJson(), true);
+        }
+
+        if( $items instanceof JsonSerializable){
+            return json_decode($items->toJson(), true);
+        }
+
+        if( $items instanceof UnitEnum){
+            return [$items];
+        }
+
+        return  (array) $items;
+        
     }
 
     /**

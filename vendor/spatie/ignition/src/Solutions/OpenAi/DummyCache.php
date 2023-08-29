@@ -6,7 +6,7 @@ use Psr\SimpleCache\CacheInterface;
 
 class DummyCache implements CacheInterface
 {
-    public function get(string $key, mixed $default = null): mixed
+    public function get(string $key, mixed $default = null)
     {
         return null;
     }
