@@ -1207,6 +1207,7 @@ interface Enumerable extends Arrayable, Countable, IteratorAggregate, Jsonable, 
      *
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize();
 
     /**

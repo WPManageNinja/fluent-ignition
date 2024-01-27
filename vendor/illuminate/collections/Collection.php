@@ -1731,6 +1731,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
      * @param  TKey  $key
      * @return TValue
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($key)
     {
         return $this->items[$key];
